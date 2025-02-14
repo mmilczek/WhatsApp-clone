@@ -24,7 +24,7 @@ public class BaseAuditingEntity {
 
     @CreatedDate
     @Column(name = "created_date", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate;
 
     @CreatedDate
     @Column(name = "last_modified_date", insertable = false)
