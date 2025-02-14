@@ -4,6 +4,7 @@ import com.marcin.whatsappclone.chat.Chat;
 import com.marcin.whatsappclone.common.BaseAuditingEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -21,6 +22,13 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@NamedQuery(name = UserConstants.FIND_USER_BY_EMAIL,
+        query = "SELECT u FROM User u WHERE u.email = :email"
+)
+@NamedQuery(name = UserConstants.FIND_ALL_USERS_EXCEPT_SELF,
+        query = "SELECT u FROM User u WHERE u.id != :publicId")
+@NamedQuery(name = UserConstants.FIND_USER_BY_PUBLIC_ID,
+        query = "SELECT u FROM User u WHERE u.id = :publicId")
 public class User extends BaseAuditingEntity {
 
     private static final int LAST_ACTIVE_INTERVAL = 5;
